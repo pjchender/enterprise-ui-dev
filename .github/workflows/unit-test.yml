@@ -10,7 +10,20 @@ on:
 
 # Jobs will run in parallel
 jobs:
-  build-and-tests:
+  build:
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+
+    # Steps run synchronously (one after the other)
+    steps:
+      # Retrieve the codebase on the ubuntu machine.
+      # if the codebase isn't required, this step can be skipped.
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm run build
+  test:
     # This job runs on Linux
     runs-on: ubuntu-latest
 
@@ -24,5 +37,3 @@ jobs:
 
       - run: npm ci
       - run: npm test
-      - name: Echo the greeting's time
-        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
