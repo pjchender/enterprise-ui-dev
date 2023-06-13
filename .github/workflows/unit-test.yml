@@ -7,24 +7,27 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
-# Jobs will run in parallel
 jobs:
   build:
-    # This job runs on Linux
     runs-on: ubuntu-latest
-
-    # Steps run synchronously (one after the other)
     steps:
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/checkout-and-setup
       - run: npm run build
   test:
-    # This job runs on Linux
     runs-on: ubuntu-latest
-
-    # Steps run synchronously (one after the other)
     steps:
-      # Retrieve the codebase on the ubuntu machine.
-      # if the codebase isn't required, this step can be skipped.
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/checkout-and-setup
       - run: npm test
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/checkout-and-setup
+      - run: npm test -- --coverage
+      - name: Archive coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: coverage
