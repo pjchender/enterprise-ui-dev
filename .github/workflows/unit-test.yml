@@ -16,15 +16,7 @@ jobs:
 
     # Steps run synchronously (one after the other)
     steps:
-      # Retrieve the codebase on the ubuntu machine.
-      # if the codebase isn't required, this step can be skipped.
-      - uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
+      - uses: ./.github/actions/checkout-and-setup
       - run: npm run build
   test:
     # This job runs on Linux
@@ -34,12 +26,5 @@ jobs:
     steps:
       # Retrieve the codebase on the ubuntu machine.
       # if the codebase isn't required, this step can be skipped.
-      - uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
-
-      - run: npm ci
+      - uses: ./.github/actions/checkout-and-setup
       - run: npm test
