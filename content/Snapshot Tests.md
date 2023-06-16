@@ -7,6 +7,7 @@ it('toUpperCase', () => {
   const result = toUpperCase('something cool');
   expect(result).toMatchSnapshot();
 });
+q;
 ```
 
 If no snapshot exists, this will write a new file with the output of the function. In future runs, you Vitest (or Jest) will check to make sure that the output is the same. If you _know_ that your output should change you can use the `--update` or `-u` flags from the CLI to update the snapshots.

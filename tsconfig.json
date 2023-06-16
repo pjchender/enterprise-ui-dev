@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "es2021",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,10 +20,18 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": ["./*"],
-      "$lib/*": ["./src/lib/*"],
-      "$components/*": ["./src/components/*"],
-      "test/*": ["./test/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "$lib/*": [
+        "./src/lib/*"
+      ],
+      "$components/*": [
+        "./src/components/*"
+      ],
+      "test/*": [
+        "./test/*"
+      ]
     }
   },
   "include": [
@@ -31,5 +43,9 @@
     "src/**/*.jsx",
     "src/**/*.svelte"
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }
